@@ -9,3 +9,15 @@ v.3
 https://v3.tailwindcss.com/docs/guides/vite
 ```
 ### Step 3: Install React Router
+
+### Step 4: Create Routes
+
+### Step 5: Install Sweet Aleart
+
+
+### Step 6: Install React Hook Form
+
+
+### Step 7: 
+npm install @hookform/resolvers
+npm i zod
