@@ -1,22 +1,40 @@
-import React from 'react'
-import { Route, Routes } from 'react-router'
+import React from "react";
+import { Outlet, Route, Routes } from "react-router";
+import Layout from "../layouts/Layout";
+import Register from "../components/pages/auth/Register";
+import About from "../components/pages/About";
+import Login from "../components/pages/auth/Login";
+import Home from "../components/pages/Home";
+import Dashboard from "../components/pages/admin/Dashboard";
+import Manage from "../components/pages/admin/Manage";
+import HomeUser from "../components/pages/user/HomeUser";
+import NotFound from "../components/pages/NotFound";
 
 function AppRoutes() {
   return (
-   <>
-   <Routes>
-    {/* Public User */}
-    <Route path="/" element={<h1>HOME</h1>}/>
-  <Route path='about' element={<h1>About</h1>}/>
-  <Route path='register' element={<h1>Register</h1>}/>
-
-  {/* Admin User */}
-  <Route path='dashboard' element={<h1>Dashboard</h1>}/>
-  <Route path='manage' element={<h1>Manage</h1>}/>
-
-   </Routes>
-   </>
-  )
+    <>
+      <Routes>
+        {/* Public User */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+        {/* Private User */}
+        <Route path="user" element={<Layout/>}>
+        <Route index element={<HomeUser/>} />
+        </Route>
+        {/* Admin User */}
+        <Route path="admin" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="manage" element={<Manage />} />
+        </Route>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+      {/* React Router-> Matching URL and  */}
+    </>
+  );
 }
 
-export default AppRoutes
+export default AppRoutes;
