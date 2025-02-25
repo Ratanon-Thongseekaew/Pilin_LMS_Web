@@ -10,3 +10,9 @@ export const registerUser = z.object({
     message: "Password Is NOT Matched",
     path: ["confirmPassword"]
 })
+
+export const loginUser = z.object({
+    email: z.string().email("Invalid email or password"),
+    password: z.string().min(6, "Invalid email or password"),
+})
+

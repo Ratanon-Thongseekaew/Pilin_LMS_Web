@@ -7,10 +7,11 @@ import Buttons from "../../form/Buttons";
 //validator
 import { registerUser } from "../../../utils/validators";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { actionRegister } from "../../../api/auth";
 
 
 function Register() {
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState, reset } = useForm({
     resolver:zodResolver(registerUser)
   });
   const { isSubmitting, errors } = formState;
@@ -20,14 +21,13 @@ function Register() {
     //delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
-      const res = await axios.post("http://localhost:8989/register", value);
+      const res = await actionRegister(value)
       console.log(res);
-
+      reset()
       createAlert("success", "Register Successfully");
-      create;
     } catch (error) {
-      createAlert("info", error.response.data.message);
-      console.log(error.response.data.message);
+      createAlert("info", error.response?.data?.message);
+      // console.log(error.response?.data?.message);
     }
   };
   return (
@@ -37,13 +37,13 @@ function Register() {
         {/* Form */}
         <form onSubmit={handleSubmit(hdlSubmit)}>
           <div className="flex flex-col gap-2 py-4">
-            <FormInput register={register} name="email" />
+            <FormInput register={register} name="email" errors ={errors} />
             <div className="flex gap-2 py-4">
-              <FormInput register={register} name="firstname" />
-              <FormInput register={register} name="lastname" />
+              <FormInput register={register} name="firstname" errors ={errors}/>
+              <FormInput register={register} name="lastname" errors ={errors}/>
             </div>
-            <FormInput register={register} name="password" />
-            <FormInput register={register} name="confirmPassword" />
+            <FormInput register={register} name="password" errors ={errors} type="password"/>
+            <FormInput register={register} name="confirmPassword" errors ={errors} type="password"/>
             <div className="flex justify-center">
              <Buttons isSubmitting={isSubmitting}
              label= "Register"
