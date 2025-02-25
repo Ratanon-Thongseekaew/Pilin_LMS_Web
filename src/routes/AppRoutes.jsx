@@ -9,24 +9,26 @@ import Dashboard from "../components/pages/admin/Dashboard";
 import Manage from "../components/pages/admin/Manage";
 import HomeUser from "../components/pages/user/HomeUser";
 import NotFound from "../components/pages/NotFound";
+import ProtectRoutes from "./ProtectRoutes";
 
 function AppRoutes() {
   return (
     <>
       <Routes>
         {/* Public User */}
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout />} >
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
         </Route>
-        {/* Private User */}
-        <Route path="user" element={<Layout/>}>
+        {/* Login User */}
+        <Route path="user" 
+        element={<Layout/>} allows ={["USER","ADMIN"]}>
         <Route index element={<HomeUser/>} />
         </Route>
         {/* Admin User */}
-        <Route path="admin" element={<Layout />}>
+        <Route path="admin" element={<ProtectRoutes el={<Layout/>} allows ={["ADMIN"]}/>}>
           <Route index element={<Dashboard />} />
           <Route path="manage" element={<Manage />} />
         </Route>
