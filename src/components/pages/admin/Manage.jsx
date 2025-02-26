@@ -1,8 +1,12 @@
 import React from 'react'
 
+
+//user management
 function Manage() {
   return (
-    <div>Manage</div>
+    <div>
+Manage User
+    </div>
   )
 }
 

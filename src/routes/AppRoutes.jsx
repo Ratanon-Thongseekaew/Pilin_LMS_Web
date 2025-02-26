@@ -10,6 +10,9 @@ import Manage from "../components/pages/admin/Manage";
 import HomeUser from "../components/pages/user/HomeUser";
 import NotFound from "../components/pages/NotFound";
 import ProtectRoutes from "./ProtectRoutes";
+import AdminLayout from "../layouts/AdminLayout";
+import Courses from "../components/pages/admin/Courses";
+import AddNewCourse from "../components/pages/admin/AddNewCourse";
 
 function AppRoutes() {
   return (
@@ -28,9 +31,11 @@ function AppRoutes() {
         <Route index element={<HomeUser/>} />
         </Route>
         {/* Admin User */}
-        <Route path="admin" element={<ProtectRoutes el={<Layout/>} allows ={["ADMIN"]}/>}>
+        <Route path="admin" element={<ProtectRoutes el={<AdminLayout/>} allows ={["ADMIN"]}/>}>
           <Route index element={<Dashboard />} />
           <Route path="manage" element={<Manage />} />
+          <Route path="courses" element={<Courses />} />
+          <Route path="courses/newcourse" element={<AddNewCourse/>} />
         </Route>
         <Route path="*" element={<NotFound/>}/>
       </Routes>

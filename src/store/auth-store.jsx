@@ -19,8 +19,15 @@ actionLoginWithZustand: async(value)=>{
         return {success: false, error:error.response.data.message}
     }
 },
+actionLogoutWithZustand: async(value)=>{
+    set({user:[],token:null})
+},
 });
 //({}) คือการ return ออกมาเป็น obj
+
+
+
+
 
 //step 2 export store
 
