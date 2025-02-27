@@ -43,14 +43,22 @@ export const actionCreateNewCourse = async(token,courseData)=>{
 return result
 }
 
-export const actionGetCourseById = async(id)=>{
-  return await axios.get(``);
+export const actionGetCourseById = async(id,token)=>{
+  console.log("actiongetCOurseByID Token Check:", token)
+  const result =  await axios.get(`http://localhost:8989/admin/courses/course/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return result
 };
 
 
 
-export const actionUpdateCourse = async(token,id)=>{
-  const result = await axios.put(`http://localhost:8989/admin/courses/course/${id}`,{
+export const actionUpdateCourse = async(token,id,courseData)=>{
+  const result = await axios.put(`http://localhost:8989/admin/courses/course/${id}`, courseData,{
     headers: {
       Authorization: `Bearer ${token}`,
     },

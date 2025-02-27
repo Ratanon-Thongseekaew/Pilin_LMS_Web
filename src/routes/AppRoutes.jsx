@@ -37,7 +37,7 @@ function AppRoutes() {
           <Route path="manage" element={<Manage />} />
           <Route path="courses" element={<Courses />} />
           <Route path="courses/newcourse" element={<AddNewCourse/>} />
-          <Route path="courses/update" element={<UpdateCourse/>} />
+          <Route path="courses/update/:id" element={<UpdateCourse/>} />
         </Route>
         <Route path="*" element={<NotFound/>}/>
       </Routes>

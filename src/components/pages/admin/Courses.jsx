@@ -23,8 +23,8 @@ const hldactionGetEveryCourses = async(token)=>{
 const hdlAddnewCourse =async()=>{
     navigate("newcourse")
 }
-const hdlUpdateCourse = async()=>{
-  navigate("update")
+const hdlUpdateCourse = async(id)=>{
+  navigate("update/"+id)
 }
 
 const hdlDeleteCourse = async(token,id)=>{
@@ -80,7 +80,7 @@ useEffect(()=>{
         <td className="border border-gray-300 px-4 py-2">{item.createdAt}</td>
         <td className="border border-gray-300 px-4 py-2">{item.updatedAt}</td>
         <td className="border border-gray-300 px-4 py-2 flex justify-center gap-2">
-          <NotebookPen className="cursor-pointer text-blue-500 hover:text-blue-700" onClick={()=>hdlUpdateCourse(token,item.id)} />
+          <NotebookPen className="cursor-pointer text-blue-500 hover:text-blue-700" onClick={()=>hdlUpdateCourse(item.id)} />
           <Trash2
             className="cursor-pointer text-red-500 hover:text-red-700"
             onClick={() => hdlDeleteCourse(token, item.id)}
