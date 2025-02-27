@@ -23,6 +23,10 @@ const hldactionGetEveryCourses = async(token)=>{
 const hdlAddnewCourse =async()=>{
     navigate("newcourse")
 }
+const hdlUpdateCourse = async()=>{
+  navigate("update")
+}
+
 const hdlDeleteCourse = async(token,id)=>{
     Swal.fire({
         icon: "info",
@@ -30,7 +34,7 @@ const hdlDeleteCourse = async(token,id)=>{
         showCancelButton: true,
         showConfirmButton: true,
     }).then(async(data)=>{
-        console.log(data.isConfirmed)
+        // console.log(data.isConfirmed)
         if(data.isConfirmed){
             const res =await actionDeleteCourse(token,id);
             console.log(res)
@@ -76,7 +80,7 @@ useEffect(()=>{
         <td className="border border-gray-300 px-4 py-2">{item.createdAt}</td>
         <td className="border border-gray-300 px-4 py-2">{item.updatedAt}</td>
         <td className="border border-gray-300 px-4 py-2 flex justify-center gap-2">
-          <NotebookPen className="cursor-pointer text-blue-500 hover:text-blue-700" />
+          <NotebookPen className="cursor-pointer text-blue-500 hover:text-blue-700" onClick={()=>hdlUpdateCourse(token,item.id)} />
           <Trash2
             className="cursor-pointer text-red-500 hover:text-red-700"
             onClick={() => hdlDeleteCourse(token, item.id)}

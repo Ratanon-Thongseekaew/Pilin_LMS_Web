@@ -23,11 +23,37 @@ export const actionGetEveryCourses = async(token)=>{
 }
 
 export const actionDeleteCourse = async(token,id) =>{
-    const result = axios.delete(
+    const result = await axios.delete(
        `http://localhost:8989/admin/courses/course/${id}`,{
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
 return result
+}
+
+
+
+export const actionCreateNewCourse = async(token,courseData)=>{
+  const result = await axios.post("http://localhost:8989/admin/courses/newcourse",courseData,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+})
+return result
+}
+
+export const actionGetCourseById = async(id)=>{
+  return await axios.get(``);
+};
+
+
+
+export const actionUpdateCourse = async(token,id)=>{
+  const result = await axios.put(`http://localhost:8989/admin/courses/course/${id}`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return result
 }

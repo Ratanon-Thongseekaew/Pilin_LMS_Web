@@ -13,6 +13,7 @@ import ProtectRoutes from "./ProtectRoutes";
 import AdminLayout from "../layouts/AdminLayout";
 import Courses from "../components/pages/admin/Courses";
 import AddNewCourse from "../components/pages/admin/AddNewCourse";
+import UpdateCourse from "../components/pages/admin/UpdateCourse";
 
 function AppRoutes() {
   return (
@@ -36,6 +37,7 @@ function AppRoutes() {
           <Route path="manage" element={<Manage />} />
           <Route path="courses" element={<Courses />} />
           <Route path="courses/newcourse" element={<AddNewCourse/>} />
+          <Route path="courses/update" element={<UpdateCourse/>} />
         </Route>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
