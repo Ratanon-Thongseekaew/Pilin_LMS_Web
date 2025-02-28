@@ -13,7 +13,7 @@ function Logout() {
         navigate("/")
     }
   return (
-    <div className='text-white'>
+    <div className='bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 ease-in-out'>
     <button onClick={hdlLogout}>
         Logout
         </button>

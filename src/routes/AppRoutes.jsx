@@ -14,6 +14,7 @@ import AdminLayout from "../layouts/AdminLayout";
 import Courses from "../components/pages/admin/Courses";
 import AddNewCourse from "../components/pages/admin/AddNewCourse";
 import UpdateCourse from "../components/pages/admin/UpdateCourse";
+import UserLayout from "../layouts/UserLayout";
 
 function AppRoutes() {
   return (
@@ -27,8 +28,7 @@ function AppRoutes() {
           <Route path="login" element={<Login />} />
         </Route>
         {/* Login User */}
-        <Route path="user" 
-        element={<Layout/>} allows ={["USER","ADMIN"]}>
+        <Route path="user" element={<ProtectRoutes el={<UserLayout/> }  allows ={["USER","ADMIN"]}/>}>
         <Route index element={<HomeUser/>} />
         </Route>
         {/* Admin User */}

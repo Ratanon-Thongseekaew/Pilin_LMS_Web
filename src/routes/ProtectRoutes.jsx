@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useAuthStore from '../store/auth-store';
 import { actionCurrentUser } from '../api/auth';
+import { Navigate } from 'react-router';
 
 function ProtectRoutes({el,allows}) {
     const user = useAuthStore((state)=>state.user)
@@ -35,7 +36,7 @@ function ProtectRoutes({el,allows}) {
         return<h1>Loading...</h1>
     }
     if(!isProtect){
-        return <h1>Unauthorized!!!</h1>
+        return <Navigate to="/login"/>
     }
   return el
 }

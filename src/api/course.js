@@ -34,10 +34,11 @@ return result
 
 
 
-export const actionCreateNewCourse = async(token,courseData)=>{
-  const result = await axios.post("http://localhost:8989/admin/courses/newcourse",courseData,{
+export const actionCreateNewCourse = async(token,formData)=>{
+  const result = await axios.post("http://localhost:8989/admin/courses/newcourse",formData,{
     headers: {
       Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
     },
 })
 return result

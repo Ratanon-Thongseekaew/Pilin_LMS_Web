@@ -113,10 +113,10 @@ return (
           </div>
 
           {/* Course ID */}
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <label className="font-medium text-gray-700">Course ID:</label>
             <FormInput register={register} name="id" type="text" errors={errors} />
-          </div>
+          </div> */}
 
           {/* Video URL */}
           <div className="flex flex-col">

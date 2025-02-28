@@ -5,5 +5,5 @@ function Dashboard() {
     <div>Dashboard</div>
   )
 }
-
+// https://ui.shadcn.com/
 export default Dashboard

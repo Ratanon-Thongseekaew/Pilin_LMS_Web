@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import createAlert from "../../../utils/createAlert";
 import FormInput from "../../form/FormInput";
@@ -10,20 +10,37 @@ import useAuthStore from "../../../store/auth-store";
 function AddNewCourse() {
   const { formState, reset, register,handleSubmit } = useForm();
   const {errors} = formState
+  const [thumbnail,setThumbnail] =useState(null);
+  
   const token = useAuthStore((state)=>state.token)
-    const hdlSubmitCreateNewCourse = async(courseData)=>{
-      try {
-        const result = await Swal.fire({
-          icon: "info",
-          title: "Confirm",
-          text: "Add New Course?",
-          showCancelButton: true,
-          showConfirmButton: true,
-        })
-        if (result.isConfirmed) {
-          courseData.categoryId = Number(courseData.categoryId)
-          courseData.price = Number(courseData.price)
-          const response = await actionCreateNewCourse(token, courseData);
+  const hdlSubmitCreateNewCourse = async(courseData)=>{
+    try {
+      const result = await Swal.fire({
+        icon: "info",
+        title: "Confirm",
+        text: "Add New Course?",
+        showCancelButton: true,
+        showConfirmButton: true,
+      })
+      if (result.isConfirmed) {
+        courseData.categoryId = Number(courseData.categoryId)
+        courseData.price = Number(courseData.price)
+        const formData = new FormData();
+        formData.append("title", courseData.title);
+        formData.append("categoryId", courseData.categoryId);
+        formData.append("description", courseData.description);
+        formData.append("price", courseData.price);
+        formData.append("instructor", courseData.instructor);
+        formData.append("length", courseData.length);
+        formData.append("id", courseData.id);
+        formData.append("videoURL", courseData.videoURL);
+
+        // Append the thumbnail file if selected
+        if (thumbnail) {
+          formData.append("thumbnails", thumbnail);
+        }
+
+          const response = await actionCreateNewCourse(token, formData);
           console.log("Course created:", response.data);
           createAlert("success", "Create A Course Successfully");
           reset(); 
@@ -80,7 +97,7 @@ function AddNewCourse() {
 
         {/* Course ID */}
         <div className="flex flex-col">
-          <label className="font-medium text-gray-700">Admin ID:</label>
+          <label className="font-medium text-gray-700">Course ID:</label>
           <FormInput register={register} name="id" type="text" errors={errors} />
         </div>
 
@@ -89,7 +106,16 @@ function AddNewCourse() {
           <label className="font-medium text-gray-700">Video URL:</label>
           <FormInput register={register} name="videoURL" type="text" errors={errors} />
         </div>
-
+           {/* Thumbnail Upload */}
+           <div className="flex flex-col">
+            <label className="font-medium text-gray-700">Add Thumbnail:</label>
+            <input
+  type="file"
+  accept="image/*"
+  onChange={(e) => setThumbnail(e.target.files[0])} // Store file in state
+  className="form-control"
+/>
+          </div>
         {/* Submit Button */}
         <div className="flex justify-center mt-4">
           <Buttons label="Add New Course" type="submit" />
