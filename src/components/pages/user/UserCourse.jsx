@@ -6,11 +6,11 @@ import Buttons from '../../form/Buttons'
 function UserCourse() {
     const token = useAuthStore((state)=>state.token)
     const [courses,setCourses] = useState([])
-
+    console.log("010325 Test",courses)
     const hdlUserGetEveryCourses = async(token)=>{
         try {
             const res = await actionUserGetEveryCourse(token)
-            console.log("this is res result eiei",res)
+            console.log("this is res result eiei",res.data.courses)
             setCourses(res.data.courses)
         } catch (error) {
             console.log(error)
@@ -27,6 +27,13 @@ function UserCourse() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     {courses?.map((item, index) => (
         <div key={index} className="bg-white shadow-lg rounded-2xl p-4 border border-gray-200 flex flex-col h-full">
+           {/* Course Thumbnail */}
+            {item.thumbnails &&(
+                <img
+                src={item.thumbnails}
+                alt={item.title}
+                className="w-full h-40 object-cover rounded-lg mb-3"/>
+            )}
             <div className="flex-grow">
                 <h3 className="text-lg font-semibold">{item.title}</h3>
                 <p className="text-gray-600">Instructor: {item.instructor}</p>
