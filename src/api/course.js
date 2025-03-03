@@ -45,7 +45,7 @@ return result
 }
 
 export const actionGetCourseById = async(id,token)=>{
-  console.log("actiongetCOurseByID Token Check:", token)
+  console.log("actiongetCOurseByID id Check:",id)
   const result =  await axios.get(`http://localhost:8989/admin/courses/course/${id}`,
     {
       headers: {

@@ -15,6 +15,7 @@ import Courses from "../components/pages/admin/Courses";
 import AddNewCourse from "../components/pages/admin/AddNewCourse";
 import UpdateCourse from "../components/pages/admin/UpdateCourse";
 import UserLayout from "../layouts/UserLayout";
+import CourseDetail from "../components/pages/user/CourseDetail";
 
 function AppRoutes() {
   return (
@@ -30,6 +31,7 @@ function AppRoutes() {
         {/* Login User */}
         <Route path="user" element={<ProtectRoutes el={<UserLayout/> }  allows ={["USER","ADMIN"]}/>}>
         <Route index element={<HomeUser/>} />
+        <Route path="course/:id" element={<CourseDetail/>}/>
         </Route>
         {/* Admin User */}
         <Route path="admin" element={<ProtectRoutes el={<AdminLayout/>} allows ={["ADMIN"]}/>}>

@@ -6,7 +6,7 @@ import { ShoppingBag, ShoppingCart } from "lucide-react";
 function HeaderUser() {
   const payloadWithZustand = useAuthStore((state)=>state.user)
 
-console.log("asda;sdlaspdfkpoefk",payloadWithZustand)
+console.log("Check User Data:",payloadWithZustand)
   return (
     <div className="bg-sky-400 h-12 flex items-center justify-end px-4">
       <nav className=" text-white  w-full flex text-center justify-between font-semibold px-8 py-2">
