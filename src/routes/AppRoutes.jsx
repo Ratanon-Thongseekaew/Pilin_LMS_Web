@@ -16,6 +16,8 @@ import AddNewCourse from "../components/pages/admin/AddNewCourse";
 import UpdateCourse from "../components/pages/admin/UpdateCourse";
 import UserLayout from "../layouts/UserLayout";
 import CourseDetail from "../components/pages/user/CourseDetail";
+import CartPage from "../components/pages/cart/CartPage";
+import Payment from "../components/pages/auth/payment/Payment";
 
 function AppRoutes() {
   return (
@@ -32,6 +34,8 @@ function AppRoutes() {
         <Route path="user" element={<ProtectRoutes el={<UserLayout/> }  allows ={["USER","ADMIN"]}/>}>
         <Route index element={<HomeUser/>} />
         <Route path="course/:id" element={<CourseDetail/>}/>
+        <Route path="cart" element={<CartPage/>}/>
+        <Route path="payment" element={<Payment/>}/>
         </Route>
         {/* Admin User */}
         <Route path="admin" element={<ProtectRoutes el={<AdminLayout/>} allows ={["ADMIN"]}/>}>

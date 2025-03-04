@@ -1,11 +1,15 @@
 import React from "react";
 import Logout from "../Logout";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuthStore from "../../store/auth-store";
-import { ShoppingBag, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
+
 function HeaderUser() {
   const payloadWithZustand = useAuthStore((state)=>state.user)
-
+  const navigate = useNavigate()
+  const hdlNavigateToCart = ()=>{
+    navigate("/user/cart")
+  }
 console.log("Check User Data:",payloadWithZustand)
   return (
     <div className="bg-sky-400 h-12 flex items-center justify-end px-4">
@@ -21,7 +25,7 @@ console.log("Check User Data:",payloadWithZustand)
           <p>Courses</p>
           <Link to="/about">About Us</Link>
           <p>Contact</p>
-        <ShoppingCart/>
+        <ShoppingCart onClick={hdlNavigateToCart }/>
         </div>
         <div className="bg-gray-300 w-1/6">
          Hello {payloadWithZustand.firstname}

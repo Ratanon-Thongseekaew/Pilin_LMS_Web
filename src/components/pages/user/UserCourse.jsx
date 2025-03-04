@@ -9,6 +9,9 @@ function UserCourse() {
   const token = useAuthStore((state) => state.token);
   const { courses, setCourses } = useCourseStore();
   // console.log("010325 Test",courses)
+  const hdlNavigateToCart = ()=>{
+    navigate("/user/cart")
+  }
   const hdlNagivateCourseDetail = async (id) => {
     navigate(`course/${id}`);
   };
@@ -34,7 +37,7 @@ function UserCourse() {
           <div
             key={index}
             onClick={() => hdlNagivateCourseDetail(item.id)}
-            className="bg-white hover:cursor-pointer shadow-lg rounded-2xl p-4 border border-gray-200 flex flex-col h-full"
+            className="bg-gray-100 hover:cursor-pointer shadow-lg rounded-2xl p-4 border border-gray-200 flex flex-col h-full"
           >
             {/* Course Thumbnail */}
             {item.thumbnails && (
@@ -52,7 +55,7 @@ function UserCourse() {
                 {item.category.name}
               </span>
             </div>
-            <button className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+            <button onClick={hdlNavigateToCart} className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
               Add to Cart
             </button>
           </div>
