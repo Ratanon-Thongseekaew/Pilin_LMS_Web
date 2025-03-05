@@ -46,6 +46,8 @@ function Payment() {
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
     <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Upload Payment Slip</h2>
+    <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">กสิกร:123-456-789</h2>
+    <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">นายรฐนนท์ ทองสีแก้ว</h2>
     
     {orderId ? (
       <div className="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6">
@@ -73,6 +75,7 @@ function Payment() {
               type="file"
               accept="image/*"
               className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              //use sprend to get all register property
               {...register("paymentSlip", {
                 required: "Please select a payment slip image"
               })}

@@ -66,3 +66,14 @@ export const actionUpdateCourse = async(token,id,courseData)=>{
   })
   return result
 }
+
+export const actionGetEveryUsers = async(token)=>{
+const result = await axios.get(`http://localhost:8989/admin/user/alluser`,{
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+})
+  return result
+
+
+}
