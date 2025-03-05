@@ -44,11 +44,11 @@ export const actionDeleteCartItem = async(token,courseId)=>{
     console.log("Delete Cart Item:", result)
     return result
 }
-export const actionClearCart = async(token) =>{
-    const result = await axios.delete(`http://localhost:8989/cart`,{
-        headers: {
-            Authorization: `Bearer ${token}`,
-          },
-    })
-    return result
-}
+// export const actionClearCart = async(token,id) =>{
+//     const result = await axios.delete(`http://localhost:8989/cart`,{
+//         headers: {
+//             Authorization: `Bearer ${token}`,
+//           },
+//     })
+//     return result
+// }

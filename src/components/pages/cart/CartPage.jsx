@@ -3,10 +3,28 @@ import useAuthStore from '../../../store/auth-store'
 import { actionDeleteCartItem, actionGetCartItem } from '../../../api/cart'
 import { Trash2 } from 'lucide-react'
 import useCourseStore from '../../../store/course-store'
+import { useNavigate } from 'react-router'
+import { actionCreateOrder } from '../../../api/order'
+
+
+
+
 
 function CartPage() {
   const token = useAuthStore((state)=>state.token)
   const [cartItems, setCartItems] = useState([])
+  const navigate = useNavigate()
+  const hdlNagivatetoPaymentandCreateOrder = async ()=>{
+    try {
+      const response = await actionCreateOrder(token);
+      localStorage.setItem("currentOrderId",response.data.result.id)
+      console.log("localStorage Check:", localStorage.getItem("currentOrderId"))
+      console.log("Order created successfully:", response.data);
+      navigate("../payment");
+    } catch (error) {
+      console.error("Failed to create order:", error);
+    }
+  }
   console.log("show cart item eiei",cartItems)
   useEffect(()=>{
   const showCartItem = async ()=>{
@@ -65,7 +83,7 @@ showCartItem()
           <span>Subtotal:</span>
           <span>฿{cartItems.reduce((total, item) => total + Number(item.course.price || 0), 0).toFixed(2)}</span>
         </div>
-        <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+        <button onClick={hdlNagivatetoPaymentandCreateOrder} className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
           Proceed to Checkout
         </button>
       </div>

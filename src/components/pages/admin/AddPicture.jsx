@@ -1,12 +1,12 @@
-import React from 'react'
+// import React from 'react'
 
-function AddPicture(props) {
-    const {file,setFile} =props
-  return (
-    <div>
-        <input type='file' id='input-file'/>
-    </div>
-  )
-}
+// function AddPicture(props) {
+//     const {file,setFile} =props
+//   return (
+//     <div>
+//         <input type='file' id='input-file'/>
+//     </div>
+//   )
+// }
 
-export default AddPicture
+// export default AddPicture
