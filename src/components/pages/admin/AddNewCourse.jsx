@@ -112,6 +112,7 @@ function AddNewCourse() {
             <input
   type="file"
   accept="image/*"
+  //0 the first file that admin upload
   onChange={(e) => setThumbnail(e.target.files[0])} // Store file in state
   className="form-control"
 />

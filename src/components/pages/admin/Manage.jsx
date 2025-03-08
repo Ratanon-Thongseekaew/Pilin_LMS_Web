@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router'
 function Manage() {
   const navigate = useNavigate()
   const hdlNavigatetoOrders =async()=>{
+    navigate("/manage/order")
   }
   const [users,setUsers] = useState([])
   console.log("check User:",users)
@@ -31,7 +32,7 @@ function Manage() {
     <h1 className="text-3xl font-bold">User Management</h1>
     <div className="flex justify-end">
     <input placeholder="search bar"/>
-    <Buttons label ="Order Management"/>
+    <Buttons onClick={hdlNavigatetoOrders} label ="Order Management"/>
     </div>
     <table className="w-full border border-gray-300 rounded-lg shadow-lg">
     <thead className="bg-gray-200">
