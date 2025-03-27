@@ -8,7 +8,7 @@ function UserCourse() {
   const navigate = useNavigate();
   const token = useAuthStore((state) => state.token);
   const { courses, setCourses } = useCourseStore();
-  // console.log("010325 Test",courses)
+  console.log("010325 Test",courses)
   const hdlNavigateToCart = ()=>{
     navigate("/user/cart")
   }
@@ -25,8 +25,11 @@ function UserCourse() {
     }
   };
   useEffect(() => {
-    hdlUserGetEveryCourses(token);
-  }, [token]);
+    // Only fetch courses if they're not already in state or if empty
+    if (!courses || courses.length === 0) {
+      hdlUserGetEveryCourses(token);
+    }
+  }, [token, courses, setCourses]);
   console.log("check course state:", courses);
 
   return (
@@ -50,7 +53,7 @@ function UserCourse() {
             <div className="flex-grow">
               <h3 className="text-lg font-semibold">{item.title}</h3>
               <p className="text-gray-600">Instructor: {item.instructor}</p>
-              <p className="text-green-600 font-bold">Price: ${item.price}</p>
+              <p className="text-green-600 font-bold">Price: ฿{item.price}</p>
               <span className="text-sm text-blue-500 font-medium">
                 {item.category.name}
               </span>

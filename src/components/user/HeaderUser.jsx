@@ -25,7 +25,7 @@ console.log("Check User Data:",payloadWithZustand)
           <p>Courses</p>
           <Link to="/about">About Us</Link>
           <p>Contact</p>
-        <ShoppingCart onClick={hdlNavigateToCart }/>
+        <ShoppingCart className = "hover:cursor-pointer" onClick={hdlNavigateToCart }/>
         </div>
         <div className="bg-gray-300 w-1/6">
          Hello {payloadWithZustand.firstname}

@@ -5,6 +5,8 @@ import { Trash2 } from 'lucide-react'
 import useCourseStore from '../../../store/course-store'
 import { useNavigate } from 'react-router'
 import { actionCreateOrder } from '../../../api/order'
+import createAlert from '../../../utils/createAlert'
+import Swal from 'sweetalert2'
 
 
 
@@ -43,6 +45,19 @@ showCartItem()
   const deleteCartItem = async () => {
     try {
       const res = await actionDeleteCartItem(token)
+          Swal.fire({
+              icon: "info",
+              text: "Are You Sure",
+              showCancelButton: true,
+              showConfirmButton: true,
+          }).then(async(data)=>{
+              // console.log(data.isConfirmed)
+              if(data.isConfirmed){
+                  const res =await actionDeleteCartItem(token);
+                  console.log(res)
+                  createAlert("success", "delete successfully")
+              }
+          })
       console.log("Successfully delete to Cart:",res.data)
     } catch (error) {
       console.error("Faild to delete to Cart:", error);
@@ -67,9 +82,9 @@ showCartItem()
               <p className="text-sm text-gray-500">Course ID: {item.course.id || 'N/A'}</p>
             </div>
             <div className="flex items-center space-x-4">
-              <h3 className="text-xl font-bold text-blue-600">${item.course.price}</h3>
+              <h3 className="text-xl font-bold text-blue-600">฿{item.course.price}</h3>
               <button className="p-2 text-red-500 hover:text-red-700 rounded-full hover:bg-red-50 transition-colors">
-                <Trash2 onClick={deleteCartItem} className="h-5 w-5" />
+                <Trash2 onClick={deleteCartItem} className="h-5 w-5"  />
               </button>
             </div>
           </div>

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router'
 function Manage() {
   const navigate = useNavigate()
   const hdlNavigatetoOrders =async()=>{
-    navigate("/manage/order")
+    navigate("order")
   }
   const [users,setUsers] = useState([])
   console.log("check User:",users)

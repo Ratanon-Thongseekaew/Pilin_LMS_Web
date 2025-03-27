@@ -123,6 +123,10 @@ return (
             <label className="font-medium text-gray-700">Video URL:</label>
             <FormInput register={register} name="videoURL" type="text" errors={errors} />
           </div>
+          <div className="flex flex-col">
+            <label className="font-medium text-gray-700">Thumbnail IMG:</label>
+            <FormInput register={register} name="Thumbnail" type="file" errors={errors} />
+          </div>
 
           {/* Submit Button */}
           <div className="flex justify-center mt-4">

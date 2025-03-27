@@ -26,9 +26,6 @@ actionLogoutWithZustand: async(value)=>{
 //({}) คือการ return ออกมาเป็น obj
 
 
-
-
-
 //step 2 export store
 
 const useAuthStore = create(persist(authStore,{name:"auth-store"}));

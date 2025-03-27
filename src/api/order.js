@@ -43,3 +43,47 @@ export const actionUploadPaymentSlip = async (
     console.log(error);
   }
 };
+
+export const actionGetOrder = async(token)=>{
+  try {
+    const result = await axios.get(`http://localhost:8989/order/user/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return result;
+  } catch (error) {
+    return {error: error.message || "Failed to fetch orders"}
+  }
+}
+
+export const actionGetAllOrders = async(token)=>{
+try {
+  const result = await axios.get(`http://localhost:8989/order/user/allorder`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    return result;
+} catch (error) {
+  return {error: error.message || "Failed to fetch orders"}
+}
+}
+
+export const actionUpdateOrderStatus = async (orderId, status, token) =>{
+try {
+  const result = await axios.put(`http://localhost:8989/order/${orderId}/status`,{status}, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+  }
+)
+  return result;
+} catch (error) {
+  return {error: error.message || "Failed to update status"}
+}
+}

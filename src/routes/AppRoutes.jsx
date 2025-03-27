@@ -17,7 +17,8 @@ import UpdateCourse from "../components/pages/admin/UpdateCourse";
 import UserLayout from "../layouts/UserLayout";
 import CourseDetail from "../components/pages/user/CourseDetail";
 import CartPage from "../components/pages/cart/CartPage";
-import Payment from "../components/pages/auth/payment/Payment";
+import Payment from "../components/pages/user/payment/Payment";
+import OrderManage from "../components/pages/admin/OrderManage";
 
 function AppRoutes() {
   return (
@@ -41,6 +42,7 @@ function AppRoutes() {
         <Route path="admin" element={<ProtectRoutes el={<AdminLayout/>} allows ={["ADMIN"]}/>}>
           <Route index element={<Dashboard />} />
           <Route path="manage" element={<Manage />} />
+          <Route path="manage/order" element= {<OrderManage/>} />
           <Route path="courses" element={<Courses />} />
           <Route path="courses/newcourse" element={<AddNewCourse/>} />
           <Route path="courses/update/:id" element={<UpdateCourse/>} />
