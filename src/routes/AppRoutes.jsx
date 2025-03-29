@@ -19,6 +19,8 @@ import CourseDetail from "../components/pages/user/CourseDetail";
 import CartPage from "../components/pages/cart/CartPage";
 import Payment from "../components/pages/user/payment/Payment";
 import OrderManage from "../components/pages/admin/OrderManage";
+import CheckoutwithStripe from "../components/pages/user/payment/CheckoutwithStripe";
+import CheckoutComplete from "../components/pages/user/payment/CheckoutComplete";
 
 function AppRoutes() {
   return (
@@ -37,6 +39,8 @@ function AppRoutes() {
         <Route path="course/:id" element={<CourseDetail/>}/>
         <Route path="cart" element={<CartPage/>}/>
         <Route path="payment" element={<Payment/>}/>
+        <Route path="checkout/:id" element={<CheckoutwithStripe/>}/>
+        <Route path="checkout/complete/:session" element={<CheckoutComplete/>}/>
         </Route>
         {/* Admin User */}
         <Route path="admin" element={<ProtectRoutes el={<AdminLayout/>} allows ={["ADMIN"]}/>}>

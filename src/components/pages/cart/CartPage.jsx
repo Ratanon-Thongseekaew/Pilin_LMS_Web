@@ -15,10 +15,11 @@ function CartPage() {
   const hdlNagivatetoPaymentandCreateOrder = async ()=>{
     try {
       const response = await actionCreateOrder(token);
-      localStorage.setItem("currentOrderId",response.data.result.id)
+      const orderId = response.data.result.id
+      localStorage.setItem("currentOrderId",orderId)
       console.log("localStorage Check:", localStorage.getItem("currentOrderId"))
       console.log("Order created successfully:", response.data);
-      navigate("../payment");
+      navigate(`../checkout/${orderId}`);
     } catch (error) {
       console.error("Failed to create order:", error);
     }
