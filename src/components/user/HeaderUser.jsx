@@ -16,15 +16,11 @@ console.log("Check User Data:",payloadWithZustand)
       <nav className=" text-white  w-full flex text-center justify-between font-semibold px-8 py-2">
         <div className="flex gap-4">
           <Link to="/user">Pilin</Link>
-          <p>Category</p>
+          <Link to="/user">Courses</Link>
         </div>
-        <div className="flex w-1/3 bg-green-600">
-          <p>SearchBar</p>
-        </div>
-        <div className="flex  w-4/5 justify-around">
-          <p>Courses</p>
+       
+        <div className="flex  w-4/5 justify-end gap-6 pr-6">
           <Link to="/about">About Us</Link>
-          <p>Contact</p>
         <ShoppingCart className = "hover:cursor-pointer" onClick={hdlNavigateToCart }/>
         </div>
         <div className="bg-gray-300 w-1/6">

@@ -8,10 +8,6 @@ import { actionCreateOrder } from '../../../api/order'
 import createAlert from '../../../utils/createAlert'
 import Swal from 'sweetalert2'
 
-
-
-
-
 function CartPage() {
   const token = useAuthStore((state)=>state.token)
   const [cartItems, setCartItems] = useState([])
@@ -44,8 +40,7 @@ showCartItem()
   },[token])
   const deleteCartItem = async () => {
     try {
-      const res = await actionDeleteCartItem(token)
-          Swal.fire({
+      const result = Swal.fire({
               icon: "info",
               text: "Are You Sure",
               showCancelButton: true,

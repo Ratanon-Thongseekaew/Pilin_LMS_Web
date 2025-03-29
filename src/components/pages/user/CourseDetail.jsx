@@ -5,7 +5,7 @@ import useCourseStore from '../../../store/course-store'
 import useAuthStore from '../../../store/auth-store'
 import { useNavigate } from 'react-router'
 import { actionAddtoCart } from '../../../api/cart'
-import { ShoppingCart, User } from 'lucide-react'
+import { ArrowLeft, ShoppingCart, User } from 'lucide-react'
 import createAlert from '../../../utils/createAlert'
 
 function CourseDetail() {
@@ -15,6 +15,9 @@ const {selectedCourse,setSelectedCourse} = useCourseStore(state=>state)
 const token = useAuthStore((state) =>state.token);
 const hdlNavigateToCart = ()=>{
   navigate("/user/cart")
+}
+const hdlGoBacktoShop =()=>{
+  navigate("/user")
 }
 
 useEffect(()=>{
@@ -77,7 +80,14 @@ try {
         <p className="text-gray-700 leading-relaxed">{selectedCourse.description}</p>
       </div>
       
-      <div className="mt-6">
+      <div className="mt-6 flex gap-1">
+        <button 
+          onClick={hdlGoBacktoShop} 
+          className="w-full bg-gray-500 text-white py-3 px-6 rounded-lg hover:bg-gray-700 focus:ring-4 focus:ring-blue-300 focus:outline-none transition-all flex items-center justify-center font-medium"
+        >
+          <ArrowLeft className="h-5 w-5 mr-2 " />
+          Continue Shopping
+        </button>
         <button 
           onClick={addtoCart} 
           className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none transition-all flex items-center justify-center font-medium"
