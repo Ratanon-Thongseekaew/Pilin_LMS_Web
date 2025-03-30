@@ -99,6 +99,7 @@ export const checkOut = async (token, id) => {
     if (!id) {
       throw new Error("Order ID is required");
     }
+    
     console.log(`Making checkout request for order ID: ${id}`);
     console.log(`Full URL: http://localhost:8989/order/checkout/${id}`);
     console.log(`Token length: ${token?.length || 0}`);
@@ -131,16 +132,22 @@ export const checkOut = async (token, id) => {
 
 export const checkoutStatus = async (token, session) => {
   try {
+    if (!session) {
+      throw new Error("Session ID is required");
+    }
+    console.log(`Checking status for session: ${session}`);
     const result = await axios.get(
-      `http://localhost:8989/checkout-status${session}`,
+      `http://localhost:8989/order/checkout-status/${encodeURIComponent(session)}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    return result;
+    console.log("Checkout status response:", result.data);
+    return result?.data;
   } catch (error) {
-    console.log(error);
+    console.error("Checkout status error:", error);
+    throw error;
   }
 };

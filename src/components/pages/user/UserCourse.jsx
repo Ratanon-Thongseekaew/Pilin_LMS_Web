@@ -58,7 +58,7 @@ function UserCourse() {
                 {item.category.name}
               </span>
             </div>
-            <button className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+            <button  className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
               More Detail
             </button>
           </div>

@@ -40,7 +40,7 @@ function AppRoutes() {
         <Route path="cart" element={<CartPage/>}/>
         <Route path="payment" element={<Payment/>}/>
         <Route path="checkout/:id" element={<CheckoutwithStripe/>}/>
-        <Route path="checkout/complete/:session" element={<CheckoutComplete/>}/>
+        <Route path="checkout/complete" element={<CheckoutComplete/>}/>
         </Route>
         {/* Admin User */}
         <Route path="admin" element={<ProtectRoutes el={<AdminLayout/>} allows ={["ADMIN"]}/>}>

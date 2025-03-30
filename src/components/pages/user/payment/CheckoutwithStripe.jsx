@@ -15,34 +15,74 @@ const stripePromise = loadStripe(
 function CheckoutwithStripe() {
   const token = useAuthStore((state) => state.token);
   const { id } = useParams();
+  const [clientSecret, setClientSecret] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
-  console.log("Order ID from URL params:", id); // Debugging
+  // Fetch the client secret only once on component mount
   useEffect(() => {
-    console.log("URL Params - Order ID:", id);
-  }, [id]);
-  const fetchClientSecret = async () => {
-    try {
-      // Make sure id is being passed here
-      const res = await checkOut(token, id);
-      console.log("check stripe res", res);
-      return res.data?.clientSecret;
-    } catch (error) {
-      console.log(error);
-      return null; // Return null on error to avoid undefined
+    let isMounted = true;
+    
+    const getClientSecret = async () => {
+      try {
+        setLoading(true);
+        console.log("Fetching checkout for order ID:", id);
+        
+        const res = await checkOut(token, id);
+        console.log("Checkout response received");
+        
+        // Only update state if the component is still mounted
+        if (isMounted && res.data && res.data.clientSecret) {
+          console.log("Setting client secret");
+          setClientSecret(res.data.clientSecret);
+          setLoading(false);
+        } else if (isMounted) {
+          console.error("No client secret in response");
+          setError("Failed to initialize checkout");
+          setLoading(false);
+        }
+      } catch (error) {
+        if (isMounted) {
+          console.error("Error getting client secret:", error);
+          setError(error.message || "Error preparing checkout");
+          setLoading(false);
+        }
+      }
+    };
+    
+    if (id && token) {
+      getClientSecret();
+    } else {
+      setLoading(false);
+      setError("Missing order information");
     }
-  };
+    
+    // Cleanup function to prevent state updates if component unmounts
+    return () => {
+      isMounted = false;
+    };
+  }, [id, token]);
   
-  const options = { fetchClientSecret };
+  if (loading) {
+    return <div className="p-4 text-center">Preparing your checkout...</div>;
+  }
   
-  return (
-    <div id="checkout">
-      <EmbeddedCheckoutProvider
-        stripe={stripePromise}
-        options={options}
-      >
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
-    </div>
+  if (error) {
+    return <div className="p-4 text-center text-red-500">Error: {error}</div>;
+  }
+  
+  if (!clientSecret) {
+    return <div className="p-4 text-center">Could not initialize checkout</div>;
+  }
+  return (  
+    <div id="checkout" >
+    <EmbeddedCheckoutProvider
+      stripe={stripePromise}
+      options={{ clientSecret }}
+    >
+      <EmbeddedCheckout />
+    </EmbeddedCheckoutProvider>
+  </div>
   );
 }
 
