@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import useAuthStore from '../../../store/auth-store';
 
 function MyOrder() {
-    const [purchasedCourses, setPurchasedCourses] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const token = useAuthStore((state)=>state.token)
-
-    useEffect(()=>{
-    },[])
+  
     return (
       <div className="bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-4">Order History</h2>
