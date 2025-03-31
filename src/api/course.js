@@ -74,6 +74,12 @@ const result = await axios.get(`http://localhost:8989/admin/user/alluser`,{
   },
 })
   return result
-
-
+}
+export const actionGetPurchasedCourses = async(token)=>{
+  const result = await axios.get(`http://localhost:8989/user/purchasedCourses`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+  return result
 }

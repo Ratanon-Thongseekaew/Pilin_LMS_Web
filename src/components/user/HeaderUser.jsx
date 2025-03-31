@@ -10,6 +10,9 @@ function HeaderUser() {
   const hdlNavigateToCart = ()=>{
     navigate("/user/cart")
   }
+  const hdlNavigateUserInfo = ()=>{
+    navigate("info")
+  }
 console.log("Check User Data:",payloadWithZustand)
   return (
     <div className="bg-sky-400 h-12 flex items-center justify-end px-4">
@@ -23,9 +26,9 @@ console.log("Check User Data:",payloadWithZustand)
           <Link to="/about">About Us</Link>
         <ShoppingCart className = "hover:cursor-pointer" onClick={hdlNavigateToCart }/>
         </div>
-        <div className="bg-gray-300 w-1/6">
+        <button className="bg-gray-300 w-24 rounded-full" onClick={hdlNavigateUserInfo}>
          Hello {payloadWithZustand.firstname}
-        </div>
+        </button>
       </nav>
       <Logout />
     </div>

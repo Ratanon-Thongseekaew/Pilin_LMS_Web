@@ -21,37 +21,56 @@ import Payment from "../components/pages/user/payment/Payment";
 import OrderManage from "../components/pages/admin/OrderManage";
 import CheckoutwithStripe from "../components/pages/user/payment/CheckoutwithStripe";
 import CheckoutComplete from "../components/pages/user/payment/CheckoutComplete";
+import UserInfo from "../components/pages/user/UserInfo";
+import PurchasedCourses from "../components/pages/user/PurchasedCourses";
+import MyOrder from "../components/pages/user/MyOrder";
+import UserDashBoardLayout from "../layouts/UserDashBoardLayout";
 
 function AppRoutes() {
   return (
     <>
       <Routes>
         {/* Public User */}
-        <Route path="/" element={<Layout />} >
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
         </Route>
         {/* Login User */}
-        <Route path="user" element={<ProtectRoutes el={<UserLayout/> }  allows ={["USER","ADMIN"]}/>}>
-        <Route index element={<HomeUser/>} />
-        <Route path="course/:id" element={<CourseDetail/>}/>
-        <Route path="cart" element={<CartPage/>}/>
-        <Route path="payment" element={<Payment/>}/>
-        <Route path="checkout/:id" element={<CheckoutwithStripe/>}/>
-        <Route path="checkout/complete" element={<CheckoutComplete/>}/>
+        <Route
+          path="user"
+          element={
+            <ProtectRoutes el={<UserLayout />} allows={["USER", "ADMIN"]} />
+          }
+        >
+          <Route index element={<HomeUser />} />
+          <Route path="course/:id" element={<CourseDetail />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="payment" element={<Payment />} />
+          <Route path="checkout/:id" element={<CheckoutwithStripe />} />
+          <Route path="checkout/complete" element={<CheckoutComplete />} />
+          {/* User Info */}
+          <Route element={<UserDashBoardLayout />}>
+            <Route path="info" element={<UserInfo />} />
+            <Route path="learning" element={<PurchasedCourses />} />
+            <Route path="order-history" element={<MyOrder />} />
+          </Route>
         </Route>
+
         {/* Admin User */}
-        <Route path="admin" element={<ProtectRoutes el={<AdminLayout/>} allows ={["ADMIN"]}/>}>
+        <Route
+          path="admin"
+          element={<ProtectRoutes el={<AdminLayout />} allows={["ADMIN"]} />}
+        >
           <Route index element={<Dashboard />} />
           <Route path="manage" element={<Manage />} />
-          <Route path="manage/order" element= {<OrderManage/>} />
+          <Route path="manage/order" element={<OrderManage />} />
           <Route path="courses" element={<Courses />} />
-          <Route path="courses/newcourse" element={<AddNewCourse/>} />
-          <Route path="courses/update/:id" element={<UpdateCourse/>} />
+          <Route path="courses/newcourse" element={<AddNewCourse />} />
+          <Route path="courses/update/:id" element={<UpdateCourse />} />
         </Route>
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {/* React Router-> Matching URL and  */}
     </>

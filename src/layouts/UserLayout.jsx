@@ -1,7 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router'
 import HeaderUser from '../components/user/HeaderUser'
-import SideBarUser from '../components/user/SideBarUser'
 function UserLayout() {
   return (
    <div>
