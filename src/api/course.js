@@ -56,6 +56,17 @@ export const actionGetCourseById = async(id,token)=>{
   return result
 };
 
+export const actionGetPurchasedCourseById = async(id,token)=>{
+  console.log("API function received ID:", id);
+  const result = await axios.get(`http://localhost:8989/user/purchasedCourses/${id}`,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+)
+return result
+}
 
 
 export const actionUpdateCourse = async(token,id,courseData)=>{

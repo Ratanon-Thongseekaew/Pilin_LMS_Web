@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import useAuthStore from "../../../store/auth-store";
 import { actionGetPurchasedCourses } from "../../../api/course";
+import { useNavigate } from "react-router";
 
 function PurchasedCourses() {
     const [purchasedCourses, setPurchasedCourses] = useState([]);
+    console.log("eieiza purchasedCourses",purchasedCourses)
+    console.log("purchasedCourses check",purchasedCourses)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const token = useAuthStore((state) => state.token);
-  
+    const navigate = useNavigate()
+    const hdlNavigatetoPurchasedCourseDetail = (id)=>{
+      navigate(`/user/learning/${id}`)
+    }
     useEffect(() => {
       const fetchPurchasedCourses = async () => {
         setLoading(true); // Make sure loading is true when starting the fetch
@@ -19,8 +25,8 @@ function PurchasedCourses() {
           if (res.error) {
             throw new Error(res.error);
           }
-          console.log("API response:", res.data);
-          setPurchasedCourses(res.data);
+          console.log("API response:", res.data.result);
+          setPurchasedCourses(res.data.result);
           setLoading(false);
         } catch (error) {
           console.error("Error fetching courses:", error);
@@ -32,6 +38,7 @@ function PurchasedCourses() {
     }, [token]);
   
     return (
+        <div className="bg-white p-6 rounded-lg shadow-md">
         <div className="p-6">
           <h2 className="text-2xl font-bold mb-4">Purchased Courses</h2>
           
@@ -84,7 +91,7 @@ function PurchasedCourses() {
                     <span className="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">
                       Purchased
                     </span>
-                    <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">
+                    <button className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition" onClick={() => hdlNavigatetoPurchasedCourseDetail(course.id)}>
                       View Course
                     </button>
                   </div>
@@ -92,6 +99,7 @@ function PurchasedCourses() {
               ))}
             </div>
           )}
+        </div>
         </div>
       );
   }

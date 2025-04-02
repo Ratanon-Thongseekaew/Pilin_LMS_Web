@@ -25,6 +25,7 @@ import UserInfo from "../components/pages/user/UserInfo";
 import PurchasedCourses from "../components/pages/user/PurchasedCourses";
 import MyOrder from "../components/pages/user/MyOrder";
 import UserDashBoardLayout from "../layouts/UserDashBoardLayout";
+import PurchasedCourseDetail from "../components/pages/user/PurchasedCourseDetail";
 
 function AppRoutes() {
   return (
@@ -55,6 +56,7 @@ function AppRoutes() {
             <Route path="info" element={<UserInfo />} />
             <Route path="learning" element={<PurchasedCourses />} />
             <Route path="order-history" element={<MyOrder />} />
+            <Route path="learning/:id" element={<PurchasedCourseDetail />} />
           </Route>
         </Route>
 

@@ -21,14 +21,14 @@ function MyOrder() {
                 <td className="py-3 px-4">#12345</td>
                 <td className="py-3 px-4">2023-06-15</td>
                 <td className="py-3 px-4">React Fundamentals Course</td>
-                <td className="py-3 px-4">$49.99</td>
+                <td className="py-3 px-4">฿49.99</td>
                 <td className="py-3 px-4"><span className="bg-green-100 text-green-800 py-1 px-2 rounded-full text-xs">Completed</span></td>
               </tr>
               <tr className="border-b border-gray-200">
                 <td className="py-3 px-4">#12346</td>
                 <td className="py-3 px-4">2023-08-22</td>
                 <td className="py-3 px-4">Advanced CSS Course</td>
-                <td className="py-3 px-4">$39.99</td>
+                <td className="py-3 px-4">฿39.99</td>
                 <td className="py-3 px-4"><span className="bg-green-100 text-green-800 py-1 px-2 rounded-full text-xs">Completed</span></td>
               </tr>
               {/* Add more orders as needed */}
